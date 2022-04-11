@@ -1,0 +1,39 @@
+delete  from Athena_Message;
+delete  from Message_destination_id;
+delete  from Artemis_Message;
+delete  from Artemis_General_Order;
+delete  from Artemis_Scan_Point;
+delete  from Artemis_enabled_triggers;
+delete  from Artemis_action_point;
+delete  from Mars_Message;
+delete  from Mars_General_Order;
+delete  from Mars_Waypoint;
+delete  from Mars_enabled_triggers;
+delete  from Nike_Message;
+delete  from Nike_General_Order;
+delete  from Nike_Waypoint;
+delete  from Nike_enabled_triggers;
+delete  from Nike_action_point;
+delete  from Athena_Orders;
+delete  from Athena_Waypoint;
+
+
+select *  from Athena_Message;
+select *  from Message_destination_id;
+select *  from Artemis_Message;
+select *  from Artemis_General_Order;
+select *  from Artemis_Scan_Point;
+select *  from Artemis_enabled_triggers;
+select *  from Artemis_action_point;
+select *  from Mars_Message;
+select *  from Mars_General_Order;
+select *  from Mars_Waypoint;
+select *  from Mars_enabled_triggers;
+select *  from Nike_Message;
+select *  from Nike_General_Order;
+select *  from Nike_Waypoint;
+select *  from Nike_enabled_triggers;
+select *  from Nike_action_point;
+select *  from Athena_Orders;
+select *  from Athena_Waypoint;
+

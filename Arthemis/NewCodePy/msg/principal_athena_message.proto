@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package athenaMessages;
+
+// Import sub messages for asset types
+
+import "athena_nike.proto";
+import "athena_artemis_message.proto";
+import "athena_autonomy.proto";
+import "athena_mars.proto";
+
+// Principal Message 
+
+message Principal_Athena_Message {
+    string sender_uuid = 1;
+    string message_type  = 2; // Status or Command
+    repeated string destination_id = 3; // Who the message is for - Athena or list of assets
+    string timestamp_utc_time = 4;
+
+    // Asset Messages 
+
+    repeated artemisMessage.Artemis_Message artemis = 5; 
+    repeated marsMessage.Mars_Message mars = 6;
+    repeated nikeMessages.Nike_Message nike = 7;
+    repeated athenaOrderMessage.Athena_Orders athena_orders  = 8;
+    }
+

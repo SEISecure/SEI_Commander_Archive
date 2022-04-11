@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package MsrInterfaces;
+
+message Timestamp //Unit time??? http://wiki.ros.org/roscpp/Overview/Time
+{
+    uint64 sec = 1;
+    uint64 nsec = 2;
+}
+
+message LocalizationSolution
+{
+    Timestamp time = 1;
+    double latitude = 2;
+    double longitude = 3;
+    float heading = 4;
+    float pitch = 5;
+    float roll = 6;
+}

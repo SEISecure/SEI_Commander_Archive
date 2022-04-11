@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package athenaOrderMessage;
+import "waypoint.proto";
+// Athena Autonomy Proto
+
+// WIP!
+
+// Depricated WTM message
+message WTM_Settings {
+  int32 wtm_mode = 1;
+  repeated waypointMessages.Waypoint wtm_area = 2;
+  int32 weapon_control_order = 3; // 0 = Neutral, 1 = Weapons Hold, 2 = Weapons Tight, 3 = Weapons Free
+  repeated int32 applicable_systems = 4; // Applicable Systems ID or IDs for message
+  repeated string applicable_systems_cot = 5; // Applicable Systems ID or IDs for message in cot sting format
+  string wtm_name = 6;
+  }
+
+message Athena_Orders{
+  int32 weapon_control_order = 1; // 0 = Neutral, 1 = Weapons Hold, 2 = Weapons Tight, 3 = Weapons Free
+  int32 behavior = 2; // 0 - Neutral, 1 = Search, 2 = Attack, 3 = Defend
+  repeated waypointMessages.Waypoint area_points = 3; // List of points that describe a polygon this applys to.
+  int32 group_number = 4;
+  }

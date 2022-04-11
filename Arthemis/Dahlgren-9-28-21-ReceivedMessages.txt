@@ -1,0 +1,194 @@
+Server [localhost]:
+Database [postgres]: athenastatus
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+psql (13.3)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+athenastatus=# \dt
+                  List of relations
+ Schema |           Name           | Type  |  Owner
+--------+--------------------------+-------+----------
+ public | artemis_action_point     | table | postgres
+ public | artemis_enabled_triggers | table | postgres
+ public | artemis_general_order    | table | postgres
+ public | artemis_message          | table | postgres
+ public | artemis_scan_point       | table | postgres
+ public | athena_message           | table | postgres
+ public | athena_orders            | table | postgres
+ public | athena_waypoint          | table | postgres
+ public | mars_enabled_triggers    | table | postgres
+ public | mars_general_order       | table | postgres
+ public | mars_message             | table | postgres
+ public | mars_waypoint            | table | postgres
+ public | message_destination_id   | table | postgres
+ public | nike_action_point        | table | postgres
+ public | nike_enabled_triggers    | table | postgres
+ public | nike_general_order       | table | postgres
+ public | nike_message             | table | postgres
+ public | nike_waypoint            | table | postgres
+(18 rows)
+
+
+athenastatus=#
+athenastatus=# select *  from Athena_Message;
+ primary_id | sender_id | message_type | timestamp_utc_time
+------------+-----------+--------------+--------------------
+          1 | Athena_1  | Status       | 12:25:33
+          2 | Athena_1  | Status       | 12:25:34
+          3 | Athena_1  | Status       | 12:25:34
+          4 | Athena_1  | Status       | 12:25:35
+          5 | Athena_1  | Status       | 12:25:35
+          6 | Athena_1  | Status       | 12:25:36
+          7 | Athena_1  | Status       | 12:25:36
+          8 | Athena_1  | Status       | 12:25:37
+          9 | Athena_1  | Status       | 12:25:37
+         10 | Athena_1  | Status       | 12:25:38
+(10 rows)
+
+
+athenastatus=# select *  from Message_destination_id;
+ primary_id | athena_message_id | value
+------------+-------------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Artemis_Message;
+ primary_id | athena_message_id |        uuid        | latitude  | longitude | altitude | heading | fire_fan_left | fire_fan_right | ammo_count | ptu_pan | ptu_tilt | zoom | current_order_running
+------------+-------------------+--------------------+-----------+-----------+----------+---------+---------------+----------------+------------+---------+----------+------+-----------------------
+          1 |                 1 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          2 |                 2 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          3 |                 3 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          4 |                 4 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          5 |                 5 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          6 |                 6 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          7 |                 7 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          8 |                 8 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+          9 |                 9 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+         10 |                10 | pracice_artemi_145 | 39.119553 | -87.36375 |        0 |       0 |             0 |              0 |     100000 |       0 |        0 |    0 |
+(10 rows)
+
+
+athenastatus=# select *  from Artemis_General_Order;
+ primary_id | artemis_message_id | trigger | weapon_control_order | behavior | select_scan_pattern | left_aor | right_aor | continuing_order
+------------+--------------------+---------+----------------------+----------+---------------------+----------+-----------+------------------
+          1 |                  1 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          2 |                  2 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          3 |                  3 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          4 |                  4 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          5 |                  5 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          6 |                  6 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          7 |                  7 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          8 |                  8 | general |                    1 |        1 |                   0 |        0 |         0 | general
+          9 |                  9 | general |                    1 |        1 |                   0 |        0 |         0 | general
+         10 |                 10 | general |                    1 |        1 |                   0 |        0 |         0 | general
+(10 rows)
+
+
+athenastatus=# select *  from Artemis_Scan_Point;
+ primary_id | artemis_order_id | point_number | pan | tilt | zoom
+------------+------------------+--------------+-----+------+------
+(0 rows)
+
+
+athenastatus=# select *  from Artemis_enabled_triggers;
+ primary_id | artemis_order_id | value
+------------+------------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Artemis_action_point;
+ primary_id | artemis_order_id | value
+------------+------------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Mars_Message;
+ primary_id | athena_message_id |         uuid         | latitude | longitude | heading | breadcrumb_number | current_order_running
+------------+-------------------+----------------------+----------+-----------+---------+-------------------+-----------------------
+          1 |                 1 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          2 |                 2 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          3 |                 3 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          4 |                 4 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          5 |                 5 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          6 |                 6 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          7 |                 7 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          8 |                 8 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+          9 |                 9 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+         10 |                10 | practice_mars_254645 | 39.11989 |  -87.3635 |     270 |                 0 |
+(10 rows)
+
+
+athenastatus=# select *  from Mars_General_Order;
+ primary_id | mars_message_id | trigger | behavior | driving_control_order | continuing_order
+------------+-----------------+---------+----------+-----------------------+------------------
+(0 rows)
+
+
+athenastatus=# select *  from Mars_Waypoint;
+ primary_id | mars_order_id | point_number | latitude | longitude | altitude | heading
+------------+---------------+--------------+----------+-----------+----------+---------
+(0 rows)
+
+
+athenastatus=# select *  from Mars_enabled_triggers;
+ primary_id | mars_order_id | value
+------------+---------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Nike_Message;
+ primary_id | athena_message_id | uuid  | connection_ok | batt_level | latitude  | longitude | altitude | current_point_number | can_rth | asset_type | airspace | airspace_start | airspace_stop | nerfed | current_order_running
+------------+-------------------+-------+---------------+------------+-----------+-----------+----------+----------------------+---------+------------+----------+----------------+---------------+--------+-----------------------
+          1 |                 1 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          2 |                 2 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          3 |                 3 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          4 |                 4 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          5 |                 5 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          6 |                 6 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          7 |                 7 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          8 |                 8 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+          9 |                 9 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+         10 |                10 | nike3 | f             |          0 | 39.119648 | -87.36379 |       32 |                    0 |       0 |          0 |          |              0 |             0 | f      |
+(10 rows)
+
+
+athenastatus=# select *  from Nike_General_Order;
+ primary_id | nike_message_id | trigger | weapon_control_order | behavior | continuing_order
+------------+-----------------+---------+----------------------+----------+------------------
+(0 rows)
+
+
+athenastatus=# select *  from Nike_Waypoint;
+ primary_id | nike_order_id | point_number | latitude | longitude | altitude | heading
+------------+---------------+--------------+----------+-----------+----------+---------
+(0 rows)
+
+
+athenastatus=# select *  from Nike_enabled_triggers;
+ primary_id | nike_order_id | value
+------------+---------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Nike_action_point;
+ primary_id | nike_order_id | value
+------------+---------------+-------
+(0 rows)
+
+
+athenastatus=# select *  from Athena_Orders;
+ primary_id | athena_message_id | weapon_control_order | behavior | group_number
+------------+-------------------+----------------------+----------+--------------
+(0 rows)
+
+
+athenastatus=# select *  from Athena_Waypoint;
+ primary_id | athena_order_id | point_number | latitude | longitude | altitude | heading
+------------+-----------------+--------------+----------+-----------+----------+---------
+(0 rows)
+

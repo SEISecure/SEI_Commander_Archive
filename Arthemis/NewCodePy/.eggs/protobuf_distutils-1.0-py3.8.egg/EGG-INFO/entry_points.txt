@@ -1,0 +1,3 @@
+[distutils.commands]
+generate_py_protobufs = protobuf_distutils.generate_py_protobufs:generate_py_protobufs
+

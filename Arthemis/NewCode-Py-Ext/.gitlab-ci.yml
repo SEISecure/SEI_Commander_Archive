@@ -1,0 +1,32 @@
+stages:
+  - build
+  - deploy
+
+python:build:
+  image: python:3.7
+  stage: build
+  before_script:
+    - pip3 install -r requirements.txt
+    - pip3 install pytest
+    - apt-get -y update && apt-get install -y protobuf-compiler python3-protobuf
+  script:
+    - python3 setup.py generate_py_protobufs
+    - python3 setup.py bdist_wheel
+    - PYTHONPATH=`pwd` py.test -v
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+python:deploy:
+  image: python:3.7
+  stage: deploy
+  needs:
+    - job: "python:build"
+      artifacts: true
+  before_script:
+    - pip3 install twine
+  script:
+    - python3 -m twine upload --repository gitlab dist/*.whl --config-file $PYPIRC --verbose
+  only:
+    - master

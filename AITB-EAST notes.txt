@@ -1,0 +1,35 @@
+land nav
+
+leadership exercise
+  put them in vehicle 
+  recoisance 
+  map anaylsis 
+  tactical skills 
+
+free form 
+
+Build AI that adapts 
+
+Decrease attrition - Evaluate field exercise
+Increase learning 
+
+10-12 evaluate on squad leader 
+
+Mission planning,
+Execution patroling,
+Reconissance 
+
+Digitize the range
+- Land nave
+- Recon and no shooting 
+- Setting ambush (accuracy lower)
+
+
+
+Field of vision 
+Hearing 
+
+Invisible -> 
+   -> Untrained agent
+   -> Trainig alongside student
+   -> Turn on accuracy 

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package nikeMessages;
+
+import "waypoint.proto";
+
+message Nike_General_Order {
+  string trigger = 1; // set to "general" or "slew_to_cue"
+  int32 weapon_control_order = 2; // 0 = Neutral, 1 = Weapons Hold, 2 = Weapons Tight, 3 = Weapons Free
+  int32 behavior = 3; // 0 - Neutral, 1 = Behavior A, 2 = Behavior B, 3 = Behavior 3
+  repeated waypointMessages.Waypoint waypoints = 4; // behavior determines if this ordered list of points is a path or area to scan
+  repeated string enabled_triggers = 6; // Triggers allowed to inturrpt this behavior.
+  string continuing_order = 7; // set to "general" or other triggers, if this behavior is complete, this GO will be executed next
+  repeated float action_point = 8;
+  }
+
+message Nike_Message {
+  string uuid = 1; // ID of Asset this message is about, unique to asset.
+  //Status Only Fields
+  bool connection_ok = 2;
+  float batt_level = 3;
+  float latitude = 4;
+  float longitude = 5;
+  float altitude = 6;
+  int32 current_point_number = 7;
+  int32 can_rth = 8;
+  int32 asset_type = 9;
+  // If from Nike this is a status of what is currently set.
+  // If from commanding agent these are commands. current_order_running starts and stops Behavior Controller.
+  string airspace = 10;
+  int32 airspace_start = 11;
+  int32 airspace_stop = 12;
+  bool nerfed = 13;
+  string current_order_running = 14; // General = run general GO, Off = Turn off, Triggers
+  repeated Nike_General_Order orders = 15;
+}

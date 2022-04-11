@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package marsMessage;
+
+import "waypoint.proto";
+
+// Mars General Order
+message Mars_General_Order {
+  string trigger = 1; // set to "general" or "slew_to_cue"
+  int32 behavior = 2; // 0 = neutral, 1 = follow_route, 2 = patrol_route, 3 = ram
+  int32 driving_control_order = 3; // tactical_fast, tactical_slow, admin_speed
+  repeated waypointMessages.Waypoint waypoints = 4;
+  repeated string enabled_triggers = 5;
+  string continuing_order = 6; // set to "general" or other triggers, if this behavior is complete, this GO will be executed next
+
+}
+
+// Mars Movmenet Message
+
+message Mars_Message{
+  string uuid = 1; // ID of Asset this message is about, unique to asset. 
+  float latitude = 2;
+  float longitude = 3;
+  float heading = 4;
+  int32 breadcrumb_number = 5;
+  // If from MARS this is a status of what is currently set.
+  // If from commanding agent these are commands. current_order_running starts and stops Behavior Controller.
+  string current_order_running = 6; // General = run general GO, Off = Turn off, Triggers - 
+  repeated Mars_General_Order orders = 7; 
+}
+
+  
+

@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package artemisMessage;
+
+message Artemis_General_Order {
+  string trigger = 1; // set to "general" or "slew_to_cue"
+  int32 weapon_control_order = 2; // 0 = Neutral, 1 = Weapons Hold, 2 = Weapons Tight, 3 = Weapons Free
+  int32 behavior = 3; // 0 - Neutral, 1 = Behavior A, 2 = Behavior B, 3 = Behavior 3
+  int32 select_scan_pattern = 4; // Select from previously set scan patterns
+  repeated Scan_Point create_scan_pattern = 5; // Points for external entity to created scan pattern
+  float left_aor = 6;
+  float right_aor = 7;
+  repeated string enabled_triggers = 8; // Triggers allowed to inturrpt this behavior.
+  string continuing_order = 9; // set to "general" or other triggers, if this behavior is complete, this GO will be executed next
+  repeated float action_point = 10;
+  }
+
+message Scan_Point {
+  int32 point_number = 1;
+  float pan = 2;
+  float tilt = 3;
+  float zoom = 4;
+  }
+
+message Artemis_Message {
+  string uuid = 1; // ID of Asset this message is about, unique to asset. 
+  // Status Only Feilds
+  float latitude = 2;
+  float longitude = 3;
+  float altitude = 4;
+  float heading = 5;
+  float fire_fan_left = 6; // abslolute limit
+  float fire_fan_right = 7; // absolute limit
+  int32 ammo_count = 8;
+  float ptu_pan = 9;
+  float ptu_tilt = 10;
+  float zoom = 11;
+  // If from Artemis this is a status of what is currently set.
+  // If from commanding agent these are commands. current_order_running starts and stops Behavior Controller.
+  string current_order_running = 12; // General = run general GO, Off = Turn off, Triggers - S2C, Search
+  repeated Artemis_General_Order orders = 13; 
+  }
+

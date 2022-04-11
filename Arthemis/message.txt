@@ -1,0 +1,2 @@
+messageToSend: 'ugv_mars_123 move 1431,1297,5,27$1471,1227,3,23$1211,1221,5,17 1'
+Message sent:    { "senderId": "21351", "messageType": "Command", "destinationId": [ "123" ], "timestampUtcTime": "2021-08-27T17:59:46.4276425Z", "mars": [ { "assetId": "123", "orders": [ { "behavior": "1", "drivingControlOrder": "1", "waypoints": [ { "pointNumber": "1", "latitude": 1431, "longitude": 1297, "heading": 27 }, { "pointNumber": "2", "latitude": 1471, "longitude": 1227, "heading": 23 }, { "pointNumber": "3", "latitude": 1211, "longitude": 1221, "heading": 17 } ] } ] } ] }

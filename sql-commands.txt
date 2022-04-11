@@ -1,0 +1,147 @@
+CREATE TABLE commands(commandID serial PRIMARY KEY, unit_toCommand VARCHAR (50) UNIQUE NOT NULL, command VARCHAR (50) UNIQUE NOT NULL,	arg0 VARCHAR (50));
+
+CREATE TABLE waypointcommands2(commandID serial PRIMARY KEY, command VARCHAR (50) NOT NULL, x VARCHAR (50) NOT NULL, y VARCHAR (50) NOT NULL, z VARCHAR (50) NOT NULL, unit1 VARCHAR (50) NOT NULL,
+	unit2 VARCHAR (50), unit3 VARCHAR (50), unit4 VARCHAR (50), combatmode VARCHAR (50), behavior VARCHAR (50));
+
+CREATE TABLE blufor(unit_ID serial PRIMARY KEY,	unit_name VARCHAR (50) UNIQUE NOT NULL, unit_health VARCHAR (50) NOT NULL,
+ unit_ammo VARCHAR (50), unit_type VARCHAR (50), px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL, unit_orientation VARCHAR (50), unit_velocity VARCHAR (50));
+ 
+CREATE TABLE opfor(unit_ID serial PRIMARY KEY,	unit_name VARCHAR (50) UNIQUE NOT NULL, unit_health VARCHAR (50) NOT NULL,
+ unit_ammo VARCHAR (50), unit_type VARCHAR (50), unit_position VARCHAR (50) NOT NULL, unit_orientation VARCHAR (50), unit_velocity VARCHAR (50));
+ 
+CREATE TABLE enemyfire(unit_ID serial PRIMARY KEY,	unit_name VARCHAR (50) UNIQUE NOT NULL, time VARCHAR (50));
+
+CREATE TABLE enemyVisibility(visibility_ID serial PRIMARY KEY, opFor VARCHAR (50) NOT NULL, seenbluFor VARCHAR (50) NOT NULL, Visiblity_Amount VARCHAR (50) NOT NULL, UNIQUE(opFor,seenbluFor));
+
+INSERT INTO dateTime(messageID, date, time)
+VALUES
+	(value1, value2, …);
+	
+insert into commands (commandid, unit_toCommand, command, arg0) values (0, 'RS1', 'moveforward', 5);
+insert into commands (commandid, unit_toCommand, command, arg0) values (0, 'RS', 'moveright', 5);
+insert into commands (commandid, unit_toCommand, command, arg0) values (0, 'RS', 'moveleft', 5);
+insert into commands (commandid, command, arg0) values (0,''RS', stop', 5);
+
+DELETE FROM commands WHERE commandid =0;
+
+insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4) values (0, 'hold', 18200, 3.9, 15000, 'RS', 'RS2' , 'RS3', 'RS4');
+
+create table fireData(fireID serial PRIMARY KEY, timestamp VARCHAR (50) NOT NULL, unit_name VARCHAR (50) NOT NULL, unit_health VARCHAR (50) NOT NULL,
+ unit_ammo VARCHAR (50), unit_type VARCHAR (50), px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL,
+ unit_orientation VARCHAR (50), unit_velocity VARCHAR (50), visibleEnemies VARCHAR (150) NOT NULL);
+ 
+ create table positionData(posID serial PRIMARY KEY, timestamp VARCHAR (50) NOT NULL, unit_name VARCHAR (50) NOT NULL, unit_health VARCHAR (50) NOT NULL,
+ unit_ammo VARCHAR (50), unit_type VARCHAR (50), px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL,
+ unit_orientation VARCHAR (50), unit_velocity VARCHAR (50), visibleEnemies VARCHAR (150) NOT NULL);
+ 
+ COPY positiondata TO 'C:\downloads\Ambush_Data\far_fallback5_positiondata_db.csv' DELIMITER ',' CSV HEADER;
+ COPY firedata TO 'C:\downloads\Ambush_Data\far_fallback5_firedata_db.csv' DELIMITER ',' CSV HEADER;
+  COPY positiondata TO 'C:\downloads\Ambush_Data\close_assault5_positiondata_db.csv' DELIMITER ',' CSV HEADER;
+ COPY firedata TO 'C:\downloads\Ambush_Data\close_assault5_firedata_db.csv' DELIMITER ',' CSV HEADER;
+ COPY positiondata TO 'C:\downloads\Ambush_Data\close_flank5_positiondata_db.csv' DELIMITER ',' CSV HEADER;
+ COPY firedata TO 'C:\downloads\Ambush_Data\close_flank5_firedata_db.csv' DELIMITER ',' CSV HEADER;
+ 
+ insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4, combatmode, behavior) values (0, 'hold', 18240, 3.9, 14790, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4, combatmode, behavior) values (1, 'hold', 18333, 3.9, 14650, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4, combatmode, behavior) values (2, 'hold', 18547, 3.9, 14664, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4, combatmode, behavior) values (3, 'hold', 18795, 3.9, 14480, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ 
+ 
+ insert into waypointcommands2 (commandid, command, x, y, z, unit1, unit2, unit3, unit4, combatmode, behavior) values (1, 'hold', 14786, 39, 15930, 'rightlead', 'rightgunner' , 'r3', 'r4', 'white', 'stealth');
+ 
+ create table missionres(misID serial PRIMARY KEY, timestamp VARCHAR (50) NOT NULL, casualties VARCHAR (50) NOT NULL, observation_pt VARCHAR (50) NOT NULL,
+ hostage_status VARCHAR (50));
+ 
+ create table movecommand(moveID serial PRIMARY KEY, solo VARCHAR (50) NOT NULL, x VARCHAR (50) NOT NULL, y VARCHAR (50) NOT NULL, z VARCHAR (50) NOT NULL, unit1 VARCHAR (50) NOT NULL, roe VARCHAR (50) NOT NULL);
+ 
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (0, 'yes', 14747, 3.9, 15936, 'rightlead', '2');
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (1, 'yes', 14747, 3.9, 15936, 'rightgunner', '2');
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (2, 'yes', 14747, 3.9, 15936, 'r3', '2');
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (3, 'yes', 14747, 3.9, 15936, 'r4', '2');	
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (4, 'no', 14495, 3.9, 16000, 'leftlead', '0');	
+insert into movecommand (moveID, solo, x, y, z, unit1, roe) values (5, 'no', 14655, 3.9, 15936, 'mlead', '0');
+ insert into movecommand (commandid, command, x, y, z, unit1) values (2, 'no', 18547, 3.9, 14664, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ insert into movecommand (commandid, command, x, y, z, unit1) values (3, 'no', 18795, 3.9, 14480, 'RS', 'RS2' , 'RS3', 'RS4', 'yellow' ,'combat');
+ 
+ create table ambushres (resID serial PRIMARY KEY, timestamp VARCHAR (50) NOT NULL, casualties VARCHAR (50) NOT NULL, 
+ 
+ create table uavcommand (commandid serial PRIMARY KEY, uav_name VARCHAR (50) NOT NULL, command VARCHAR (50) NOT NULL, params VARCHAR (100));
+ 
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'move', '1260;3.9;1448');
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'move', '1554;3.9;1238');
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'set_engagement_mode', 'observation_only');
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'drop_grenades', 'HE');
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'drop_grenades', 'Smoke');
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'set_speed', 10);
+ insert into uavcommand (commandid, uav_name, command, params) values (0, 'UCAV_2' ,'set_hover_altitude', 30);
+ 
+ insert into soldiercommand (soldierid, soldier_name, command, params)  values ('" + str(soldierid) + "','" + sol + "', 'move'," + soldierPositionString + "
+ 
+ Arma 3 DB Commands
+ create table soldiercommandArma(soldierID serial PRIMARY KEY, soldier_name VARCHAR (50), command VARCHAR (50) NOT NULL, params VARCHAR (100));
+ insert into soldiercommandArma (soldierid, soldier_name, command, params)  values (0, 'sharp', 'move', 10);
+ select px, pz from blueforpositiondata where unit_name = 'Soldier' order by timestamp asc limit 1;
+ 
+ create table UnitCount(side VARCHAR (50) NOT NULL, number_alive integer NOt NULL);
+ insert into UnitCount( side, number_alive) values('blue', 5);
+ insert into UnitCount( side, number_alive) values('red', 5);
+ 
+ create table armaruns(runnumber serial PRIMARY KEY, opfor_remaining integer NOt NULL, bluefor_remaining integer NOt NULL, percentBuddyTeamVisibleRange double precision NOT NULL, minCover double precision NOT NULL, minConcealment double precision NOT NULL, averageCover double precision NOT NULL, averageConcealment double precision NOT NULL, averageVisibleArea double precision NOT NULL, percentBuddyTeamNotMoving double precision NOT NULL, largestNumberBuddyTeam30Meters double precision NOT NULL, areaLeftUnsearched double precision NOT NULL);
+ 
+ 
+  create table UnitCountRed(number_alive_red integer);
+ 
+ create table blueforpositiondataArma(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, px double precision NOT NULL, py double precision NOT NULL, pz double precision NOT NULL, Health double precision NOT NULL, unit_type VARCHAR (50) NOT NULL, unit_group VARCHAR (50) NOT NULL);
+ create table opforpositiondataArma(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, px double precision NOT NULL, py double precision NOT NULL, pz double precision NOT NULL, Health double precision NOT NULL, unit_type VARCHAR (50) NOT NULL, unit_group VARCHAR (50) NOT NULL);
+ 
+ create table bluefordetections(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, target_name VARCHAR (50) NOT NULL, groupKnowledge boolean NOT NULL, unitKnowledge boolean NOT NULL, lastTimeDetected double precision NOT NULL, lastTimeUnitEndangered double precision NOT NULL, targetSide VARCHAR (50) NOT NULL, positionerror double precision NOT NULL,   target_x double precision NOT NULL, target_y double precision NOT NULL, target_z double precision NOT NULL);
+ 
+ create table opfordetections(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, target_name VARCHAR (50) NOT NULL, groupKnowledge boolean NOT NULL, unitKnowledge boolean NOT NULL, lastTimeDetected double precision NOT NULL, lastTimeUnitEndangered double precision NOT NULL, targetSide VARCHAR (50) NOT NULL, positionerror double precision NOT NULL,   target_x double precision NOT NULL, target_y double precision NOT NULL, target_z double precision NOT NULL);
+ 
+ create table blueforvisibility(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, target_name VARCHAR (50) NOT NULL, unit_x double precision NOT NULL, unit_y double precision NOT NULL, unit_z double precision NOT NULL, target_x double precision, target_y double precision, target_z double precision, target_time double precision NOT NULL, visible boolean NOT NULL);
+ create table opforvisibility(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, target_name VARCHAR (50) NOT NULL, unit_x double precision NOT NULL, unit_y double precision NOT NULL, unit_z double precision NOT NULL, visible boolean NOT NULL, lastTimeDetected double precision NOT NULL, last_target_x double precision, last_target_y double precision, last_target_z double precision);
+create table positiondataArma(timestamp double precision NOT NULL, unit_name VARCHAR (50) NOT NULL, unit_side VARCHAR (50) NOT NULL, px double precision NOT NULL, py double precision NOT NULL, pz double precision NOT NULL, Health double precision NOT NULL);
+
+
+ create table elevation(terrainid serial PRIMARY KEY, tx VARCHAR (50) NOT NULL, tz VARCHAR (50) NOT NULL, Surface_height VARCHAR (50) NOT NULL);
+ create table executedCommands(soldierID serial PRIMARY KEY, soldier_name VARCHAR (50) NOT NULL, executed_command VARCHAR (50) NOT NULL);
+ create table soldierTeam(soldier_name VARCHAR (100) PRIMARY KEY, Buddy VARCHAR (100) , Fire VARCHAR (100), Squad VARCHAR (100), Platoon VARCHAR (100), Company VARCHAR (100));
+ create table MissionType(missionID serial PRIMARY Key, mission_name VARCHAR(50) NOT NULL);
+ create table UAVThreatsDetected(threatid serial PRIMARY KEY, time VARCHAR (50) NOT NULL, uav_name VARCHAR (50) NOT NULL, enemys_detected VARCHAR (50) NOT NULL);
+ create table soldiercommand(soldierID serial PRIMARY KEY, soldier_name VARCHAR (50) NOT NULL, command VARCHAR (50) NOT NULL, params VARCHAR (100));
+ create table ugvmgcommand(ugvID serial PRIMARY KEY, ugv_or_mg VARCHAR (50) NOT NULL, name VARCHAR (50) NOT NULL, command VARCHAR (50) NOT NULL, params VARCHAR (100));
+create table ThreatsDetected(threatid serial PRIMARY KEY, time VARCHAR (50) NOT NULL, unit_name VARCHAR (50) NOT NULL, enemys_detected VARCHAR (50) NOT NULL);
+create table terrainType(terrainid serial PRIMARY KEY, tx VARCHAR (50) NOT NULL, ty VARCHAR (50) NOT NULL, tz VARCHAR (50) NOT NULL, urban VARCHAR (50) NOT NULL, open VARCHAR (50) NOT NULL, closed VARCHAR (50) NOT NULL,);
+create table UAVActions(uav_name VARCHAR (50) PRIMARY KEY, current_action VARCHAR (50) NOT NULL);
+create table UAVCompletedActions(uav_name VARCHAR (50) PRIMARY KEY, completed_action VARCHAR (50) NOT NULL);
+create table fireData(fireID serial PRIMARY KEY, timestamp VARCHAR (50) NOT NULL, unit_name VARCHAR (50) NOT NULL, unit_health VARCHAR (50) NOT NULL,
+ unit_ammo VARCHAR (50), unit_type VARCHAR (50), px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL);
+
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'ft1_lead' ,'move', '999826;3.9;1000120');
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'at1' ,'move', '1311;3.9;1243');
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'at1' ,'move', '1311;3.9;1243');
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'at1' ,'move', '1311;3.9;1243');
+
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'ft2_gunne' ,'move', '14310;3.9;910');
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'at1' ,'move', '1311;3.9;1243');
+insert into soldiercommand (soldierID, soldier_name, command, params) values (0, 'at1' ,'change_weapon', 1);
+insert into ugvmgcommand (ugvid, ugv_or_mg, name, command, params) values (0,'ugv', 'SUGV_1' ,'move', '1165;3.9;1448');
+insert into ugvmgcommand (ugvid, ugv_or_mg, name, command, params) values (0,'ugv', 'SUGV_1' ,'move', '1260;3.9;1448');
+insert into ugvmgcommand (ugvid, ugv_or_mg, name, command, params) values (0,'mg', 'mg1' ,'initialize', 60);
+insert into ugvmgcommand (ugvid, ugv_or_mg, name, command) values (0,'mg', 'mg1' ,'open_fire');
+insert into ugvmgcommand (ugvid, ugv_or_mg, name, command) values (0,'mg', 'mg1' ,'reload');
+ insert into ugvmgcommand (ugvid, ugv_or_mg, name, command) values (0,'ugv', 'ugv_2' ,'hold_fire');
+ insert into ugvmgcommand (ugvid, ugv_or_mg, name, command, params) values (0,'ugv', 'ugv_2' ,'move', '1260;3.9;1448');
+  insert into ugvmgcommand (ugvid, ugv_or_mg, name, command) values (0,'ugv', 'SUGV_1' ,'hold_fire');
+  insert into ugvmgcommand (ugvid, ugv_or_mg, name, command) values (0,'ugv', 'SUGV_1' ,'visible_threats');
+  insert into ugvmgcommand (ugvid, ugv_or_mg, name, command, params) values (0,'ugv', 'SUGV_1' ,'move', '1431;3.9;1297');
+  
+  COPY elevation TO 'C:\downloads\elevation_db_village_control.csv' DELIMITER ',' CSV HEADER;
+  COPY terrainType TO 'C:\downloads\terrainType_db_village_control.csv' DELIMITER ',' CSV HEADER;
+  COPY blueforpositiondata TO 'C:\downloads\Training_Ambush\blueforpositiondata_db10.csv' DELIMITER ',' CSV HEADER;
+  COPY opforpositiondata TO 'C:\downloads\Training_Ambush\opforpositiondata_db10.csv' DELIMITER ',' CSV HEADER;
+  COPY blueforvisibility TO 'C:\downloads\blueforVisibility_db_Arma.csv' DELIMITER ',' CSV HEADER;
+  
+  create table blueforpositiondata(unitID serial PRIMARY KEY, timestamp TIME NOT NULL, unit_name VARCHAR (50) NOT NULL, px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL, vx VARCHAR (50) NOT NULL, vy VARCHAR (50) NOT NULL, vz VARCHAR (50) NOT NULL, Health VARCHAR (50) NOT NULL);
+  create table opforpositiondata(unitID serial PRIMARY KEY, timestamp TIME NOT NULL, unit_name VARCHAR (50) NOT NULL, px VARCHAR (50) NOT NULL, py VARCHAR (50) NOT NULL, pz VARCHAR (50) NOT NULL, vx VARCHAR (50) NOT NULL, vy VARCHAR (50) NOT NULL, vz VARCHAR (50) NOT NULL, Health VARCHAR (50) NOT NULL);
+  select px, py, pz, vx, vy, vz from blueforpositiondata where unit_name='guy1' order by timestamp desc limit 1;

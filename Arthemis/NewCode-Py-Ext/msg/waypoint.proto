@@ -1,0 +1,1 @@
+syntax = "proto3";package waypointMessages;message Waypoint {  int32 point_number = 1;  float latitude = 2;  float longitude = 3;  float altitude = 4;  float heading = 5;  }

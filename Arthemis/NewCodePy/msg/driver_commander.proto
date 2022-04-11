@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package MsrInterfaces;
+
+import "msr_common.proto";
+
+enum MobilityTask {
+    STOP = 0;
+    WAYPOINT = 1;
+    WAYPOINTROUTE = 2;
+}
+
+message LLA_Waypoint {
+    double latitude = 1; //radians MKS
+    double longitude = 2; //radians MKS
+}
+
+message MobilityTaskRequest
+{
+    Timestamp time = 1;
+    string uuid = 2;
+    MobilityTask request = 3;
+    repeated LLA_Waypoint waypoints = 4;
+}
+
+message MobilityTaskProposedSolution
+{
+    uint64 task_id = 1;
+    repeated LLA_Waypoint waypoints = 3;
+}
+message MobilityTaskProposedSolutions
+{
+    repeated MobilityTaskProposedSolution solitions = 1;
+}
+
+message MobilityTaskPreferredSolution
+{
+    uint64 task_id = 1;
+}
+
+enum TaskStatus
+{
+    EXECUTING = 0;
+    DONE = 1;
+    DEVIATION = 2;
+    PENDING= 3;
+    HELP = 4;
+}
+
+message MobilityTaskStatus
+{
+    Timestamp time = 1;
+    string uuid = 2;
+    TaskStatus status = 3;
+}
+
+message SquadCommand
+{
+    string squadID = 1;
+    string command = 2;
+    string waypoint = 3;
+    string unit_name = 4;
+    string targetAreaList = 5;
+}

@@ -1,0 +1,88 @@
+To list tables in the database use:
+\dt or \dtables
+
+Remove table:
+drop table Principal_Athena_Message_Artemis_Message;
+remove database:
+
+DROP DATABASE athenacommand;
+CREATE DATABASE athenacommand;
+\connect athenacommand;
+
+create table Athena_Message(Primary_ID int NOT NULL, sender_id VARCHAR (50) NOT NULL, message_type VARCHAR (50) NOT NULL, timestamp_utc_time VARCHAR (50) NOT NULL);
+insert into Athena_Message (Primary_ID, sender_id, message_type, timestamp_utc_time) values (1, 'sender21351', 'Command', '8/5/2021 11:28:33 AM');
+insert into Athena_Message (Primary_ID, sender_id, message_type, timestamp_utc_time) values (2, 'sender21351', 'Command', '8/5/2021 11:33:04 AM');
+select * from Athena_Message;
+
+create table Message_destination_id (Primary_ID int NOT NULL, Athena_Message_ID int NOT NULL, value VARCHAR (50) NOT NULL);
+insert into Message_destination_id (Primary_ID, Athena_Message_ID, value) values (1, 1, 'destination22222');
+select * from Message_destination_id;
+
+create table Artemis_Message (Primary_ID int NOT NULL, Athena_Message_ID int NOT NULL, uuid VARCHAR (50) NOT NULL, latitude real, longitude real, altitude real, heading real, fire_fan_left real, fire_fan_right real, ammo_count int, ptu_pan real, ptu_tilt real, zoom real, current_order_running VARCHAR (50));
+insert into Artemis_Message(Primary_ID, Athena_Message_ID, uuid , latitude, longitude, altitude, heading, fire_fan_left, fire_fan_right, ammo_count, ptu_pan, ptu_tilt, zoom, current_order_running) values(1, 1, 'uuid12345', 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 'general');
+insert into Artemis_Message(Primary_ID, Athena_Message_ID, uuid, latitude, longitude, altitude, heading, fire_fan_left, fire_fan_right, ammo_count, ptu_pan, ptu_tilt, zoom, current_order_running) values(2, 1, 'uuid1235', 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 1, 0.1, 0.1, 0.1, 'general');
+select * from Artemis_Message;
+
+create table Artemis_General_Order (Primary_ID int NOT NULL, Artemis_Message_ID int NOT NULL, trigger VARCHAR (50), weapon_control_order int, behavior int, select_scan_pattern int, left_aor real, right_aor real, continuing_order VARCHAR (50));
+insert into Artemis_General_Order (Primary_ID, Artemis_Message_ID , trigger, weapon_control_order, behavior, select_scan_pattern, left_aor, right_aor, continuing_order) values(1, 1, 'general', 1, 1, 1, 0.1, 0.1, 'general');
+insert into Artemis_General_Order (Primary_ID, Artemis_Message_ID, trigger, weapon_control_order, behavior, select_scan_pattern, left_aor, right_aor, continuing_order) values(2, 1, 'general', 1, 1, 1, 0.1, 0.1, 'general');
+
+create table Artemis_Scan_Point (Primary_ID int NOT NULL, Artemis_Order_ID int NOT NULL, point_number int NOT NULL, pan real, tilt real, zoom real);
+insert into Artemis_Scan_Point (Primary_ID, Artemis_Order_ID, point_number, pan, tilt, zoom) values(1, 1, 1, 0.01, 0.01, 0.1);
+insert into Artemis_Scan_Point (Primary_ID, Artemis_Order_ID, point_number, pan, tilt, zoom) values(2, 1, 2, 0.10, 0.10, 0.2);
+insert into Artemis_Scan_Point (Primary_ID, Artemis_Order_ID, point_number, pan, tilt, zoom) values(3, 1, 3, 0.20, 0.20, 0.3);
+insert into Artemis_Scan_Point (Primary_ID, Artemis_Order_ID, point_number, pan, tilt, zoom) values(4, 1,43, 0.30, 0.30, 0.3);
+
+
+create table Artemis_enabled_triggers (Primary_ID int NOT NULL, Artemis_Order_ID int NOT NULL, value VARCHAR (50));
+insert into Artemis_enabled_triggers (Primary_ID, Artemis_Order_ID, value) values (1, 1, 'trigger_1');
+insert into Artemis_enabled_triggers (Primary_ID, Artemis_Order_ID, value) values (2, 1, 'trigger_2');
+insert into Artemis_enabled_triggers (Primary_ID, Artemis_Order_ID, value) values (3, 1, 'trigger_3');
+
+
+create table Artemis_action_point (Primary_ID int NOT NULL, Artemis_Order_ID int NOT NULL, value real);
+insert into Artemis_action_point (Primary_ID, Artemis_Order_ID, value) values (1, 1, 1.0);
+insert into Artemis_action_point (Primary_ID, Artemis_Order_ID, value) values (2, 1, 2.0);
+insert into Artemis_action_point (Primary_ID, Artemis_Order_ID, value) values (3, 1, 3.0);
+
+create table Mars_Message (Primary_ID int NOT NULL, Athena_Message_ID int NOT NULL, uuid VARCHAR (50) NOT NULL, latitude real, longitude real,  heading real, breadcrumb_number int, current_order_running VARCHAR (50));
+insert into Mars_Message(Primary_ID, Athena_Message_ID, uuid , latitude, longitude, heading, breadcrumb_number, current_order_running) values(1, 1, 'uuid12345', 0.1, 0.1, 0.1, 24, 'general');
+select * from Mars_Message;
+
+create table Mars_General_Order (Primary_ID int NOT NULL, Mars_Message_ID int NOT NULL, trigger VARCHAR (50), behavior int, driving_control_order int, continuing_order VARCHAR (50));
+insert into Mars_General_Order (Primary_ID, Mars_Message_ID , trigger, behavior, driving_control_order, continuing_order) values(1, 1, 'trigger', 1, 1, 'contOrder');
+select * from Mars_General_Order;
+
+create table Mars_Waypoint (Primary_ID int NOT NULL, Mars_Order_ID int NOT NULL, point_number int NOT NULL, latitude real, longitude real, altitude real, heading real);
+insert into Mars_Waypoint (Primary_ID, Mars_Order_ID, point_number, latitude, longitude, altitude, heading) values(1, 1, 1, 0.1, 0.1, 0.1, 0.1);
+select * from Mars_Waypoint;
+
+create table Mars_enabled_triggers (Primary_ID int NOT NULL, Mars_Order_ID int NOT NULL, value VARCHAR (50));
+insert into Mars_enabled_triggers (Primary_ID, Mars_Order_ID, value) values (1, 1, 'trigger_1');
+
+create table Nike_Message (Primary_ID int NOT NULL, Athena_Message_ID int NOT NULL, uuid VARCHAR (50), connection_ok boolean, batt_level real, latitude real, longitude real, altitude real, current_point_number int, 
+can_rth int, asset_type int, airspace VARCHAR (50), airspace_start int, airspace_stop int, nerfed boolean, current_order_running VARCHAR (50));
+insert into Nike_Message(Primary_ID, Athena_Message_ID, uuid , connection_ok, batt_level, latitude, longitude, altitude, current_point_number, can_rth, asset_type, airspace, airspace_start, airspace_stop, nerfed, current_order_running) values(1, 1, 'uuid12345', true, 0.1, 0.1, 0.1, 0.1, 1, 1, 1, 'airspace', 1, 2, true, 'general');
+select * from Nike_Message;
+
+create table Nike_General_Order (Primary_ID int NOT NULL, Nike_Message_ID int NOT NULL, trigger VARCHAR (50), weapon_control_order int, behavior int, continuing_order VARCHAR (50));
+insert into Nike_General_Order (Primary_ID, Nike_Message_ID , trigger, weapon_control_order, behavior, continuing_order) values(1, 1, 'general', 1, 1, 'general');
+
+create table Nike_Waypoint (Primary_ID int NOT NULL, Nike_Order_ID int NOT NULL, point_number int NOT NULL, latitude real, longitude real, altitude real, heading real);
+insert into Nike_Waypoint (Primary_ID, Nike_Order_ID, point_number, latitude, longitude, altitude, heading) values(1, 1, 1, 0.1, 0.1, 0.1, 0.1);
+select * from Nike_Waypoint;
+
+create table Nike_enabled_triggers (Primary_ID int NOT NULL, Nike_Order_ID int NOT NULL, value VARCHAR (50));
+insert into Nike_enabled_triggers (Primary_ID, Nike_Order_ID, value) values (1, 1, 'trigger_1');
+
+create table Nike_action_point (Primary_ID int NOT NULL, Nike_Order_ID int NOT NULL, value real);
+insert into Nike_action_point (Primary_ID, Nike_Order_ID, value) values (1, 1, 1.0);
+
+create table Athena_Orders (Primary_ID int NOT NULL, Athena_Message_ID int NOT NULL, weapon_control_order int, behavior int, group_number int);
+insert into Athena_Orders (Primary_ID, Athena_Message_ID, weapon_control_order, behavior, group_number) values(1, 1, 1, 1, 3);
+select * from Athena_Orders;
+
+create table Athena_Waypoint (Primary_ID int NOT NULL, Athena_Order_ID int NOT NULL, point_number int NOT NULL, latitude real, longitude real, altitude real, heading real);
+insert into Athena_Waypoint (Primary_ID, Athena_Order_ID, point_number, latitude, longitude, altitude, heading) values(1, 1, 1, 0.1, 0.1, 0.1, 0.1);
+select * from Athena_Waypoint;
+

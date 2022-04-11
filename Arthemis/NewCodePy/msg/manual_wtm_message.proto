@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package WeaponTargetMatchMessage;
+
+message Weapon_Target_Match_Message {
+  string source_id = 1; // ID of agent that sent message.
+  repeated string destination_id = 2; // Destination ID or IDs for message
+  string weapon_id = 3; // Entity to engage target
+  string target_id = 4; // CoT target ID to be engaged.
+  }
